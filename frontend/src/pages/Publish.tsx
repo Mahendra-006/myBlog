@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Appbar } from "../components/Appbar";
-import { BACKEND_URL } from "../config";
+export const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 

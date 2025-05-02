@@ -2,7 +2,7 @@ import { AuthSchema } from "@mahendra2002/myblogs-common";
 import axios from "axios";
 import { ChangeEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom"
-import { BACKEND_URL } from "../config";
+export const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 export const AuthSignin = () => {
     const navigate = useNavigate();
