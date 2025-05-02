@@ -99,9 +99,17 @@ blogRouter.get('/bulk', async (c) => {
         prisma.post.findMany({
           skip,
           take: limit,
+          include: {
+            author: {
+              select: {
+                name: true
+              }
+            }
+          }
         }),
         prisma.post.count()
       ]);
+      
   
       return c.json({
         total,
@@ -129,7 +137,20 @@ blogRouter.get('/:id', async (c) => {
     }
 
     const prisma = createPrisma(c.env.DATABASE_URL);
-    const blog = await prisma.post.findFirst({ where: { id } });
+    const blog = await prisma.post.findFirst({ 
+      where: { 
+        id 
+      },
+      select:{
+        id:true,
+        title:true,
+        content:true,
+        author: {
+          select:{
+            name: true
+          }
+        }
+      } });
 
     if (!blog) {
       c.status(404);
